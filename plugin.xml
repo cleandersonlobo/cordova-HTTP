@@ -5,7 +5,7 @@
   version="0.2.0">
 
     <name>SSL Pinning</name>
- 
+
     <description>
         Cordova / Phonegap plugin for communicating with HTTP servers using SSL pinning
 	</description>
@@ -30,7 +30,7 @@
 
         <header-file src="src/ios/CordovaHttpPlugin.h" />
         <source-file src="src/ios/CordovaHttpPlugin.m" />
-        
+
         <header-file src="src/ios/TextResponseSerializer.h" />
         <source-file src="src/ios/TextResponseSerializer.m" />
 
@@ -54,6 +54,9 @@
         <header-file src="src/ios/AFNetworking/AFURLSessionManager.h" />
         <source-file src="src/ios/AFNetworking/AFURLSessionManager.m" />
 
+        <header-file src="src/ios/XMLReader/XMLReader.h" />
+        <header-file src="src/ios/XMLReader/XMLReader.m" />
+
         <framework src="Security.framework" />
         <framework src="SystemConfiguration.framework" />
     </platform>
@@ -69,7 +72,7 @@
         <config-file target="AndroidManifest.xml" parent="/manifest">
             <uses-permission android:name="android.permission.INTERNET" />
         </config-file>
-        
+
         <source-file src="src/android/com/synconset/CordovaHTTP/CordovaHttp.java" target-dir="src/com/synconset" />
         <source-file src="src/android/com/synconset/CordovaHTTP/CordovaHttpGet.java" target-dir="src/com/synconset" />
         <source-file src="src/android/com/synconset/CordovaHTTP/CordovaHttpPost.java" target-dir="src/com/synconset" />
