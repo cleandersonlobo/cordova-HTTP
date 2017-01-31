@@ -5,7 +5,7 @@ package com.synconset;
 
 import java.net.UnknownHostException;
 import java.util.Map;
-
+import java.io.UnsupportedEncodingException;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,7 +38,7 @@ public class CordovaHttpPostCustom extends CordovaHttp implements Runnable {
             try {
                body = new String(body.getBytes(), "UTF-8");
              } catch (UnsupportedEncodingException e) {
-                this.respondWithError("There was an error encodding to UFT-8");
+
               }
 
             if (code >= 200 && code < 300) {
