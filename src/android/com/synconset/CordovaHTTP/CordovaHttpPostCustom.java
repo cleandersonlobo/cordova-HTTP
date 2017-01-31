@@ -35,10 +35,14 @@ public class CordovaHttpPostCustom extends CordovaHttp implements Runnable {
             JSONObject response = new JSONObject();
             this.addResponseHeaders(request, response);
             response.put("status", code);
-            String output = "";
+            try {
+               body = new String(body.getBytes(), "UTF-8");
+             } catch (UnsupportedEncodingException e) {
+                this.respondWithError("There was an error encodding to UFT-8");
+              }
+
             if (code >= 200 && code < 300) {
-                output = new String(body.getBytes(), "UTF-8");
-                response.put("data", output);
+                response.put("data", body);
                 this.getCallbackContext().success(response);
             } else {
                 response.put("error", body);
