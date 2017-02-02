@@ -63,10 +63,11 @@ var http = {
       headers
     ]);
   },
-  postCustom: function(url, params, headers, success, failure) {
+  postCustom: function(url, params, headers, isFollowRedirects, uccess,
+    failure) {
     headers = mergeHeaders(this.headers, headers);
     return exec(success, failure, "CordovaHttpPlugin", "postCustom", [url,
-      params, headers
+      params, headers, isFollowRedirects
     ]);
   },
   postXml: function(url, xml, headers, success, failure) {
