@@ -134,7 +134,7 @@ The error function receives a response object with 2 properties: status and erro
 ### postCustom
 Execute a POST request.  Takes a URL, parameters, headers and followRedirects.
 
-* Fixes error accents "���" Charset ISO-8859-1 to UTF-8
+Fixes error accents "���" Charset ISO-8859-1 to UTF-8
 
     cordovaHTTP.postCustom("https://google.com/", {
         id: 12,
