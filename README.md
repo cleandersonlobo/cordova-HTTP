@@ -28,7 +28,7 @@ using the Cordova / Phonegap command line interface.
 This plugin creates a cordovaHTTP service inside of a cordovaHTTP module.  You must load the module when you create your app's module.
 
     var app = angular.module('myApp', ['ngRoute', 'ngAnimate', 'cordovaHTTP']);
-    
+
 You can then inject the cordovaHTTP service into your controllers.  The functions can then be used identically to the examples shown below except that instead of accepting success and failure callback functions, each function returns a promise.  For more information on promises in AngularJS read the [AngularJS docs](http://docs.angularjs.org/api/ng/service/$q).  For more info on promises in general check out this article on [html5rocks](http://www.html5rocks.com/en/tutorials/es6/promises/).  Make sure that you load cordova.js or phonegap.js after AngularJS is loaded.
 
 ### Not AngularJS
@@ -47,12 +47,12 @@ This returns an object representing a basic HTTP Authorization header of the for
 This sets up all future requests to use Basic HTTP authentication with the given username and password.
 
     cordovaHTTP.useBasicAuth("user", "password");
-    
+
 ### setHeader
 Set a header for all future requests.  Takes a header and a value.
 
     cordovaHTTP.setHeader("Header", "Value");
-    
+
 
 ## Async Functions
 These functions all take success and error callbacks as their last 2 arguments.
@@ -69,7 +69,7 @@ As an alternative, you can store your .cer files in the www/certificates folder.
     }, function() {
         console.log('error :(');
     });
-    
+
 ### acceptAllCerts
 Accept all SSL certificates.  Or disable accepting all certificates.  This defaults to false.
 
@@ -78,7 +78,7 @@ Accept all SSL certificates.  Or disable accepting all certificates.  This defau
     }, function() {
         console.log('error :(');
     });
-    
+
 ### validateDomainName
 Whether or not to validate the domain name in the certificate.  This defaults to true.
 
@@ -87,7 +87,7 @@ Whether or not to validate the domain name in the certificate.  This defaults to
     }, function() {
         console.log('error :(');
     });
-    
+
 ### post<a name="post"></a>
 Execute a POST request.  Takes a URL, parameters, and headers.
 
@@ -98,7 +98,7 @@ The success function receives a response object with 2 properties: status and da
         status: 200,
         data: "{'id': 12, 'message': 'test'}"
     }
-    
+
 Most apis will return JSON meaning you'll want to parse the data like in the example below:
 
     cordovaHTTP.post("https://google.com/", {
@@ -117,12 +117,12 @@ Most apis will return JSON meaning you'll want to parse the data like in the exa
     }, function(response) {
         // prints 403
         console.log(response.status);
-        
-        //prints Permission denied 
+
+        //prints Permission denied
         console.log(response.error);
     });
-    
-    
+
+
 #### failure
 The error function receives a response object with 2 properties: status and error.  Status is the HTTP response code.  Error is the error response from the server as a string.  Here's a quick example:
 
@@ -130,7 +130,31 @@ The error function receives a response object with 2 properties: status and erro
         status: 403,
         error: "Permission denied"
     }
-    
+
+### postCustom
+Execute a POST request.  Takes a URL, parameters, headers and followRedirects.
+
+    cordovaHTTP.postCustom("https://google.com/", {
+        id: 12,
+        message: "test"
+    }, { Authorization: "OAuth2: token" }, true, function(response) {
+        // prints 200
+        console.log(response.status);
+        try {
+            response.data = JSON.parse(response.data);
+            // prints test
+            console.log(response.data.message);
+        } catch(e) {
+            console.error("JSON parsing error");
+        }
+    }, function(response) {
+        // prints 403
+        console.log(response.status);
+
+        //prints Permission denied
+        console.log(response.error);
+    });
+
 ### get
 Execute a GET request.  Takes a URL, parameters, and headers.  See the [post](#post) documentation for details on what is returned on success and failure.
 
@@ -142,7 +166,7 @@ Execute a GET request.  Takes a URL, parameters, and headers.  See the [post](#p
     }, function(response) {
         console.error(response.error);
     });
-    
+
 ### uploadFile
 Uploads a file saved on the device.  Takes a URL, parameters, headers, filePath, and the name of the parameter to pass the file along as.  See the [post](#post) documentation for details on what is returned on success and failure.
 
@@ -154,7 +178,7 @@ Uploads a file saved on the device.  Takes a URL, parameters, headers, filePath,
     }, function(response) {
         console.error(response.error);
     });
-    
+
 ### downloadFile
 Downloads a file and saves it to the device.  Takes a URL, parameters, headers, and a filePath.  See [post](#post) documentation for details on what is returned on failure.  On success this function returns a cordova [FileEntry object](http://cordova.apache.org/docs/en/3.3.0/cordova_file_file.md.html#FileEntry).
 
@@ -164,7 +188,7 @@ Downloads a file and saves it to the device.  Takes a URL, parameters, headers, 
     }, { Authorization: "OAuth2: token" }, "file:///somepicture.jpg", function(entry) {
         // prints the filename
         console.log(entry.name);
-        
+
         // prints the filePath
         console.log(entry.fullPath);
     }, function(response) {
