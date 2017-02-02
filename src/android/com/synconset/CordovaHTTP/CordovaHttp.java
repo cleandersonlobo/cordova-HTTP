@@ -114,7 +114,7 @@ public abstract class CordovaHttp {
         }
         return request;
     }
-    protected boolean setIsFollowRedirects(boolean isFollowRedirects) {
+    protected void setIsFollowRedirects(boolean isFollowRedirects) {
         this.isFollowRedirects = isFollowRedirects;
     }
     protected void respondWithError(int status, String msg) {
