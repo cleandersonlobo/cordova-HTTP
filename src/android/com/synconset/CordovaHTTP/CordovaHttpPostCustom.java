@@ -30,6 +30,7 @@ public class CordovaHttpPostCustom extends CordovaHttp implements Runnable {
             request.acceptCharset(ISO_CHARSET);
             request.headers(this.getHeaders());
             request.form(this.getParams());
+            request.followRedirects(this.getIsFollowRedirects())
             int code = request.code();
             String body = request.body(ISO_CHARSET);
             JSONObject response = new JSONObject();
