@@ -38,13 +38,13 @@ public abstract class CordovaHttp {
     private static AtomicBoolean sslPinning = new AtomicBoolean(false);
     private static AtomicBoolean acceptAllCerts = new AtomicBoolean(false);
     private static AtomicBoolean validateDomainName = new AtomicBoolean(true);
+    private boolean AtomicBoolean isFollowRedirects = new AtomicBoolean(true);
 
     private String urlString;
     private Map<?, ?> params;
     private JSONObject jsonObject;
     private Map<String, String> headers;
     private CallbackContext callbackContext;
-    private boolean isFollowRedirects;
 
     public CordovaHttp(String urlString, JSONObject jsonObj, Map<String, String> headers, CallbackContext callbackContext) {
         this.urlString = urlString;
@@ -82,7 +82,7 @@ public abstract class CordovaHttp {
         return this.urlString;
     }
     protected boolean getIsFollowRedirects() {
-        return this.isFollowRedirects;
+        return isFollowRedirects.get();
     }
 
 
@@ -115,7 +115,7 @@ public abstract class CordovaHttp {
         return request;
     }
     protected void setIsFollowRedirects(boolean isFollowRedirects) {
-        this.isFollowRedirects = isFollowRedirects;
+        this.isFollowRedirects.set(isFollowRedirects)
     }
     protected void respondWithError(int status, String msg) {
         try {
