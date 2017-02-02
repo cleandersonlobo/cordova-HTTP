@@ -38,7 +38,7 @@ public abstract class CordovaHttp {
     private static AtomicBoolean sslPinning = new AtomicBoolean(false);
     private static AtomicBoolean acceptAllCerts = new AtomicBoolean(false);
     private static AtomicBoolean validateDomainName = new AtomicBoolean(true);
-    private boolean AtomicBoolean isFollowRedirects = new AtomicBoolean(true);
+    private static AtomicBoolean isFollowRedirects = new AtomicBoolean(true);
 
     private String urlString;
     private Map<?, ?> params;
@@ -115,7 +115,7 @@ public abstract class CordovaHttp {
         return request;
     }
     protected void setIsFollowRedirects(boolean isFollowRedirects) {
-        this.isFollowRedirects.set(isFollowRedirects)
+        isFollowRedirects.set(isFollowRedirects);
     }
     protected void respondWithError(int status, String msg) {
         try {
