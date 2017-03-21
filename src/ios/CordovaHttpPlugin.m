@@ -165,7 +165,7 @@
     NSString *message = [NSString stringWithFormat:@"%@",m];
     NSData *httpBodyData = [message dataUsingEncoding:NSUTF8StringEncoding];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] init];
-
+    manager.securityPolicy = securityPolicy;
 
     NSString *msgLength = [NSString stringWithFormat:@"%lu", (unsigned long)[message length]];
     [request addValue: @"text/xml; charset=utf-8" forHTTPHeaderField:@"Content-Type"];
