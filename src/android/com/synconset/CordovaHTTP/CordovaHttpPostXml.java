@@ -43,8 +43,9 @@ public class CordovaHttpPostXml extends CordovaHttp implements Runnable {
              } catch (UnsupportedEncodingException e) {
 
               }
-              body = XML.toJSONObject(body).toString();
+
             if (code >= 200 && code < 300) {
+                body = XML.toJSONObject(body).toString();
                 response.put("data", body);
                 this.getCallbackContext().success(response);
             } else {
