@@ -37,20 +37,13 @@ public class CordovaHttpPostXml extends CordovaHttp implements Runnable {
             String body = request.body(CHARSET);
             JSONObject response = new JSONObject();
             this.addResponseHeaders(request, response);
-            String bodyXMl = "";
             response.put("status", code);
             try {
-              bodyXMl = new String(body, "UTF-8");
               body = new String(body.getBytes(), "UTF-8");
              } catch (UnsupportedEncodingException e) {
 
               }
-              try {
-                JSONObject xmlJSONObj = XML.toJSONObject(bodyXMl);
-                body = xmlJSONObj.toString();
-              } catch (JSONException e) {
-
-              }
+              body = XML.toJSONObject(body).toString();
             if (code >= 200 && code < 300) {
                 response.put("data", body);
                 this.getCallbackContext().success(response);
