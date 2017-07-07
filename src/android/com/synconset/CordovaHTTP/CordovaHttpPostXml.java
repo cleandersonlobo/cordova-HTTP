@@ -9,7 +9,7 @@ import java.io.UnsupportedEncodingException;
 import org.apache.cordova.CallbackContext;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.XML;
+
 
 import javax.net.ssl.SSLHandshakeException;
 
@@ -45,7 +45,6 @@ public class CordovaHttpPostXml extends CordovaHttp implements Runnable {
               }
 
             if (code >= 200 && code < 300) {
-                body = XML.toJSONObject(body).toString();
                 response.put("data", body);
                 this.getCallbackContext().success(response);
             } else {
