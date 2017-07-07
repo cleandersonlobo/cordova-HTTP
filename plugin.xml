@@ -84,5 +84,6 @@
         <source-file src="src/android/com/synconset/CordovaHTTP/HttpRequest.java" target-dir="src/com/github/kevinsawicki/http" />
         <source-file src="src/android/com/synconset/CordovaHTTP/TLSSocketFactory.java" target-dir="src/com/github/kevinsawicki/http" />
         <source-file src="src/android/com/synconset/CordovaHTTP/CordovaHttpPostCustom.java" target-dir="src/com/github/kevinsawicki/http" />
+        <source-file src="src/android/com/synconset/CordovaHTTP/CordovaHttpPostXml.java" target-dir="src/com/github/kevinsawicki/http" />
     </platform>
 </plugin>

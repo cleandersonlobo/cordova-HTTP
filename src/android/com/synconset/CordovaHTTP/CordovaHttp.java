@@ -41,6 +41,7 @@ public abstract class CordovaHttp {
     private static AtomicBoolean isFollowRedirects = new AtomicBoolean(true);
 
     private String urlString;
+    private String bodyXml;
     private Map<?, ?> params;
     private JSONObject jsonObject;
     private Map<String, String> headers;
@@ -56,6 +57,13 @@ public abstract class CordovaHttp {
     public CordovaHttp(String urlString, Map<?, ?> params, Map<String, String> headers, CallbackContext callbackContext) {
         this.urlString = urlString;
         this.params = params;
+        this.headers = headers;
+        this.callbackContext = callbackContext;
+    }
+
+    public CordovaHttp(String urlString, String bodyXml, Map<String, String> headers, CallbackContext callbackContext) {
+        this.urlString = urlString;
+        this.bodyXml = bodyXml;
         this.headers = headers;
         this.callbackContext = callbackContext;
     }
@@ -88,6 +96,10 @@ public abstract class CordovaHttp {
 
     protected Map<?, ?> getParams() {
         return this.params;
+    }
+
+    protected String getBodyXml() {
+        return this.bodyXml;
     }
 
     protected JSONObject getJsonObject() {

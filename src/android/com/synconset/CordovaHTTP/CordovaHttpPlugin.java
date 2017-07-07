@@ -81,7 +81,14 @@ public class CordovaHttpPlugin extends CordovaPlugin {
             CordovaHttp.setIsFollowRedirects(isFollowRedirects);
             CordovaHttpPostCustom postCustom = new CordovaHttpPostCustom(urlString, paramsMap, headersMap,callbackContext);
             cordova.getThreadPool().execute(postCustom);
-        } else if (action.equals("postJson")) {
+        } else if (action.equals("postXml")) {
+            String urlString = args.getString(0);
+            String bodyXml = args.getString(1);
+            JSONObject headers = args.getJSONObject(2);
+            HashMap<String, String> headersMap = this.getStringMapFromJSONObject(headers);
+            CordovaHttpPostXml postXml = new CordovaHttpPostXml(urlString, bodyXml, headersMap, callbackContext);
+            cordova.getThreadPool().execute(postXml);
+        }else if (action.equals("postJson")) {
             String urlString = args.getString(0);
             JSONObject jsonObj = args.getJSONObject(1);
             JSONObject headers = args.getJSONObject(2);
